@@ -1,0 +1,23 @@
+service: laconia-batch-test
+
+# Create an optimized package for our functions
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: eu-west-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+              - s3:GetObject
+          Resource:
+              - arn:aws:s3:::nearst-marton-test-laconia-batch/*
+
+functions:
+  hello:
+    handler: index.handler
