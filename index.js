@@ -7,9 +7,7 @@ const wait = async (ms) => {
   });
 };
 
-const batchJob = (event, context) =>
-
-  laconiaBatch(
+const batchJob = laconiaBatch(
     () =>
       laconiaBatch.s3({
         path: '.',
@@ -50,6 +48,6 @@ const batchJob = (event, context) =>
     })
     .on('end', () => {
       console.log(`END`);
-    })(event, context);
+    });
 
 exports.handler = batchJob;
